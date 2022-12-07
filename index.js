@@ -21,7 +21,10 @@ fs.readFile('input4.txt', 'utf8', function read(err, data) {
       const thirdNumber = Number(secondSplittedPair[0]);
       const fourthNumber = Number(secondSplittedPair[1]);
 
-      if (fullyContains(firstNumber, secondNumber, thirdNumber, fourthNumber))
+      if (
+        fullyContains(firstNumber, secondNumber, thirdNumber, fourthNumber) ||
+        partiallyContains(firstNumber, secondNumber, thirdNumber, fourthNumber)
+      )
         result++;
       console.log(result);
     }
@@ -30,3 +33,6 @@ fs.readFile('input4.txt', 'utf8', function read(err, data) {
 
 const fullyContains = (num1, num2, num3, num4) =>
   (num1 <= num3 && num2 >= num4) || (num3 <= num1 && num4 >= num2);
+
+const partiallyContains = (num1, num2, num3, num4) =>
+  (num1 >= num3 && num1 <= num4) || (num2 >= num3 && num2 <= num4);
