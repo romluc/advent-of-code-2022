@@ -39,11 +39,17 @@ fs.readFile('input3.txt', 'utf8', function read(err, data) {
   //   // console.log(test);
   //   console.log(calculatePoints(res));
   let repChars = [];
-  strings.forEach((str) => {
-    const firstHalf = str.substring(0, str.length / 2);
-    const secondHalf = str.substring(str.length / 2);
-    repChars.push(findRepeatedLetter(firstHalf, secondHalf));
+  const groupOfThree = [];
+  strings.forEach((str, i) => {
+    groupOfThree.push(str);
+    if (groupOfThree.length === 3) {
+      repChars.push(findRepeatedLetter(groupOfThree));
+    }
+
+    if ((i + 1) % 3 === 0) groupOfThree.length = 0;
   });
+
+
   const res = repChars
     .map(letterValue)
     .filter(Boolean)
@@ -52,12 +58,21 @@ fs.readFile('input3.txt', 'utf8', function read(err, data) {
   console.log(res);
 });
 
-function findRepeatedLetter(stringA, stringB) {
-  for (const charA of stringA) {
-    for (const charB of stringB) {
-      if (charA === charB) return charA;
-    }
+function findRepeatedLetter(arrOfStrings) {
+  let partialRes = [];
+  let res = [];
+  const [s1, s2, s3] = arrOfStrings;
+
+  for (let i in s1) {
+    s2.includes(s1[i]) ? partialRes.push(s1[i]) : null;
   }
+
+  for (let i in partialRes) {
+    s3.includes(partialRes[i]) ? res.push(partialRes[i]) : null;
+  }
+
+  // console.log([...new Set(res)]);
+  return [...new Set(res)];
 }
 
 function letterValue(char) {
@@ -117,6 +132,3 @@ function letterValue(char) {
   };
   return anum[char];
 }
-
-// console.log(letterValue('W'));
-// console.log(Array.from('abcdefghijklmnopqrstuvwxyz').indexOf(charA));
