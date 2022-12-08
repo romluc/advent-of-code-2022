@@ -30,9 +30,6 @@ const cranesArr = [
   crane9,
 ];
 
-// let operationArr = [];
-// console.log('Before: ', cranesArr);
-
 const fs = require('fs');
 fs.readFile('input5.txt', 'utf8', function read(err, data) {
   if (err) {
@@ -47,7 +44,7 @@ fs.readFile('input5.txt', 'utf8', function read(err, data) {
     const indexFrom = Number(from) - 1;
     const indexTo = Number(to) - 1;
     let craneTo = cranesArrCopy[indexTo];
-    const movingItems = cranesArrCopy[indexFrom].slice(-n).reverse();
+    const movingItems = cranesArrCopy[indexFrom].slice(-n);
     const newCraneTo = [...craneTo, ...movingItems];
     const newCraneFrom = cranesArrCopy[indexFrom].slice(0, -n);
     cranesArrCopy[indexFrom] = [...newCraneFrom];
@@ -59,23 +56,3 @@ fs.readFile('input5.txt', 'utf8', function read(err, data) {
   cranesArrCopy.map((crane) => res.push(crane.slice(-1)));
   console.log(res);
 });
-
-// function popN(arr, n) {
-//   for (let i = 0; i < n; i++) {
-//     operationArr.push(arr.pop());
-//     console.log(`i: ${i}, arr: ${arr}`);
-//     console.log(`i: ${i}, opArr: ${operationArr}`);
-//   }
-
-//   return operationArr.filter(Boolean);
-// }
-
-// function pushN(arr, n) {
-//   console.log(operationArr.filter(Boolean));
-//   for (let i = 0; i < n; i++) {
-//     arr.push(operationArr.pop());
-//   }
-//   console.log(operationArr.filter(Boolean));
-//   // console.log(console.log(`arr ${i}: ${arr}`));
-//   return arr.filter(Boolean);
-// }
