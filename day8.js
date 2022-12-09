@@ -1,4 +1,7 @@
-const isGreaterThanOthersInLine = require('./utils/isGreaterThanOthersInLine.js');
+const {
+  isGreaterThanOthersInLine,
+  howManyUntilEqualOrTaller,
+} = require('./utils');
 const fs = require('fs');
 fs.readFile('inputs/input8.txt', 'utf8', (err, data) => {
   if (err) {
@@ -13,17 +16,28 @@ fs.readFile('inputs/input8.txt', 'utf8', (err, data) => {
   const matrix = data.split(/\r?\n/);
   const treeMatrix = matrix.map(toArray);
 
-  let row = [];
+  let arrayOfItemsEqualOrTaller = [];
   let number = 0;
   let sum = 0;
 
+  // Pt.1
+  // for (let i = 1; i < treeMatrix.length - 1; i++) {
+  //   for (let j = 1; j < treeMatrix.length - 1; j++) {
+  //     if (isGreaterThanOthersInLine(treeMatrix, i, j)) sum++;
+  //   }
+  // }
+
+  // Pt.2
   for (let i = 1; i < treeMatrix.length - 1; i++) {
     for (let j = 1; j < treeMatrix.length - 1; j++) {
-      if (isGreaterThanOthersInLine(treeMatrix, i, j)) sum++;
+      arrayOfItemsEqualOrTaller.push(
+        howManyUntilEqualOrTaller(treeMatrix, i, j)
+      );
     }
   }
+  console.log(arrayOfItemsEqualOrTaller);
 
-  console.log(sum + edgesTrees);
+  // console.log(sum + edgesTrees);
 });
 
 const toArray = (line) => Array.from(line);
