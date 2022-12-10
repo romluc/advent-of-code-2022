@@ -3,7 +3,7 @@ const {
   howManyUntilEqualOrTaller,
 } = require('./utils');
 const fs = require('fs');
-fs.readFile('inputs/input8.txt', 'utf8', (err, data) => {
+fs.readFile('inputs/input8_1.txt', 'utf8', (err, data) => {
   if (err) {
     throw err;
   }
@@ -36,6 +36,7 @@ fs.readFile('inputs/input8.txt', 'utf8', (err, data) => {
     }
   }
   console.log(arrayOfItemsEqualOrTaller);
+  console.log(Math.max(...arrayOfItemsEqualOrTaller));
 
   // console.log(sum + edgesTrees);
 });

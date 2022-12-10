@@ -55,19 +55,27 @@ function howManyUntilEqualOrTaller(arr, row, col) {
   let allItems = 0;
 
   for (let i = 0; i < row; i++) {
-    if (arr[i][col] > arr[row][col]) itemsBehind++;
+    if (arr[i][col] < arr[row][col]) {
+      itemsBehind++;
+    } else break;
   }
 
   for (let i = row + 1; i < arr.length; i++) {
-    if (arr[i][col] > arr[row][col]) itemsAhead++;
+    if (arr[i][col] < arr[row][col]) {
+      itemsAhead++;
+    } else break;
   }
 
   for (let j = 0; j < col; j++) {
-    if (arr[row][j] > arr[row][col]) itemsLeft++;
+    if (arr[row][j] < arr[row][col]) {
+      itemsLeft++;
+    } else break;
   }
 
   for (let j = col + 1; j < arr[row].length; j++) {
-    if (arr[row][j] > arr[row][col]) itemsRight++;
+    if (arr[row][j] < arr[row][col]) {
+      itemsRight++;
+    } else break;
   }
 
   allItems = itemsBehind * itemsAhead * itemsLeft * itemsRight;
