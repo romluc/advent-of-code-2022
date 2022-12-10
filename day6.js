@@ -4,14 +4,12 @@ fs.readFile('inputs/input6.txt', 'utf8', (err, data) => {
     throw err;
   }
 
-  let testStr = 'bvwbjplbgvbhsrlpgdmjqwftvncz';
-  console.log(findFirstDifferentSubstring(testStr));
-  // console.log(testStr.slice(0, 4));
+  console.log(findFirstDifferentSubstring(data, 13));
 });
 
-function findFirstDifferentSubstring(str) {
-  for (let i = 3; i < str.length; i++) {
-    if (!hasRepeats(str.slice(i - 3, i + 1))) {
+function findFirstDifferentSubstring(str, n) {
+  for (let i = n; i < str.length; i++) {
+    if (!hasRepeats(str.slice(i - n, i + 1))) {
       return i + 1;
     } else {
       continue;
